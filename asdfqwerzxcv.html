@@ -49,7 +49,7 @@ background:#FFFFF0;
 <body>
 <meta name="viewport" content="width=device-width">
 <div class="b"><div class="a">ゆうかずちゃんねる</div>浜松駅時刻表<br>000000001 <span id="s"></span></div>
-<table><tr><td class="he">時刻</td><td class="he">列車番号</td><td class="he">運用</td><td class="he">備考</td> </tr></table>
+<table><tr><td class="he">時刻</td><td class="he">列車番号</td><td class="he">運用</td><td class="he">備考</td></tr></table>
 
 
 <script>
@@ -275,7 +275,7 @@ Object.keys(arr).forEach( function(value) {
   
 var n =Number(String(Hour)+String(Min));
   
-if(n-100 < value&&value<n+200){
+if(n < value&&value<n+400){
   
   if( c % 2 === 0 ) {
   var cl = "ki";
