@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -263,13 +264,16 @@ var te2 = t.slice(t2+1);
   
   
   var now = new Date();var target = document.getElementById("DateTimeDisp");var Hour = now.getHours();var Min = now.getMinutes();
-  document.querySelector('span').innerHTML = "<br>"+Hour+":"+Min
+  
+  if(String(Min).length==1){
+    var Min = "0"+Min
+  }
  var c=0;
-
+document.querySelector('span').innerHTML = "<br>"+Hour+":"+Min;
 Object.keys(arr).forEach( function(value) {
 
   
-var n =Number(String(Hour)+Min);
+var n =Number(String(Hour)+String(Min));
   
 if(n-100 < value&&value<n+200){
   
