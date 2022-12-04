@@ -4,7 +4,7 @@ setInterval(function(){
         aaa();
     },1000)
 function aaa(){
-document.querySelector('table').innerHTML= '<tr><td class="he">時刻</td><td class="he">列車番号</td><td class="he">行き先</td><td class="he">運用</td><td class="he">備考</td> </tr>'
+document.querySelector('table').innerHTML= '<tr><td class="he">時刻</td><td class="he">列番</td><td class="he">行き先</td><td class="he">運用</td><td class="he">備考</td> </tr>'
   
 var data = [
   [1420,'熱海','T+GG',''],
