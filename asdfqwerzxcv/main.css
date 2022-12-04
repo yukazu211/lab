@@ -1,0 +1,38 @@
+.a{
+margin-left:27vw;
+  font-size:40px;
+      border: solid 3px #01CB22;  
+  width:360px;
+  margin: 0 auto;
+  background:black;
+}
+.b{
+color:#E5E500;
+  text-align:center;
+}
+
+table{
+margin: 0 auto;
+   border-collapse:  collapse;  
+  width:100%;
+
+  
+}
+th,td {
+    border: solid 1px #D9D9D0;
+  
+  
+}
+.he{
+  background:#98FA98;
+  text-align:center;
+}
+body{
+  background:#000040;
+}
+.ki{
+  background:#FFFACC;
+}
+.gu{
+background:#FFFFF0;
+}
