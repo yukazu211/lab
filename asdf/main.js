@@ -4,7 +4,7 @@ setInterval(function(){
         aaa();
     },1000)
 function aaa(){
-document.querySelector('table').innerHTML= '<tr><td class="he">時刻</td><td class="he">列番</td><td class="he">行き先</td><td class="he">運用</td><td class="he">備考</td> </tr>'
+document.querySelector('table').innerHTML= '<tr><td class="he"rowspan="2">時刻</td><td class="he">列車番号</td><td class="he"rowspan="2">運用</td><td class="he"rowspan="2">備考</td></tr><tr><td class="he">行き先</td></tr>'
   
 var data = [
   [1420,'熱海','T+GG',''],
@@ -231,7 +231,7 @@ var te1 = t.slice(t1+1,t2);
 var te2 =   t.slice(t2+1,t3);
 var te3 = t.slice(t3+1);
   
-   document.querySelector('table').innerHTML+= '<tr><td class="'+cl+'">'+ v + '</td><td class="'+cl+'">' + this[value] +'M</td><td class="'+cl+'">'+te1+'</td><td class="'+cl+'">'+te2+'</td><td class="'+cl+'">'+te3+'</td></tr>';
+   document.querySelector('table').innerHTML+= '<tr><td class="'+cl+'" rowspan="2">'+ v + '</td><td class="'+cl+'">' + this[value] +'M</td><td class="'+cl+'"rowspan="2">'+te2+'</td><td class="'+cl+'"rowspan="2">'+te3+'</td></tr><tr><td class="'+cl+'">'+te1+'</td></tr>';
 }
 }, arr)
   
