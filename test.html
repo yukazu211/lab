@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<style id="webmakerstyle">
+h4 {
+  margin-bottom: 0;
+}
+.flex_item {
+  display: flex;
+  align-items: center;
+}
+.set_intro {
+  font-size: 14px;
+}
+#modal_button {
+  position: absolute;
+  left: 93%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  height: 30px;
+  background: black;
+  color: white;
+  width: 70px;
+  border: none;
+}
+.modal_close {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+.modal_head {
+  display: flex;
+  align-items: center;
+
+  width: 52%;
+  background: white;
+  height: 40px;
+  left: 24%;
+  top: 10%;
+  position: absolute;
+  z-index: 8;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal {
+  position: absolute;
+  width: 50%;
+  height: 80%;
+  top: 10%;
+  left: 24%;
+  background: white;
+  padding: 1%;
+  padding-top: 20px;
+  border-radius: 10px;
+  overflow: auto;
+}
+#set_modal {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+}
+.modal_bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: #000000aa;
+  top: 0px;
+  position: fixed;
+}
+
+#settings {
+  margin-left: 5px;
+}
+
+.yoselect {
+  background: #e9e9e9;
+}
+.clear {
+  text-align: right;
+  margin-top: -20px;
+  margin-right: 15px;
+}
+
+.yoli {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 50vw;
+  padding-right: 10px;
+}
+#arback,
+#ab_on,
+.yosoku {
+  display: none;
+}
+.box {
+  width: 50vw;
+  margin: auto;
+  height: auto;
+  user-select: none;
+  margin-top: 35vh;
+}
+.flex {
+  display: flex;
+
+  align-items: center;
+}
+.ico {
+  padding: 13px 0;
+  height: 25px;
+  width: 25px;
+  height: 25px;
+
+  margin: 0, auto;
+}
+.clear-hidden {
+  visibility: hidden;
+}
+@media print, screen and (min-width: 733px) {
+  #serbox {
+    border: none;
+    outline: none;
+    /*       background: red; */
+    margin: 10px;
+    font-size: 16px;
+    width: calc(50vw - 115px);
+  }
+  .yohr {
+    border-top: 1px solid gray;
+    border-bottom: 0px solid gray;
+    width: 47vw;
+    margin-top: -2px;
+    margin-left: 1vw;
+  }
+  .yosp {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .youl {
+    list-style: none;
+    margin-left: -50px;
+
+    margin-right: 30px;
+  }
+  #arback {
+    display: none;
+  }
+  .box,
+  .box-f {
+    padding-left: 10px;
+    width: 50vw;
+    margin: auto;
+    height: auto;
+    border-radius: 26px;
+
+    border: 1px solid gray;
+    user-select: none;
+
+    margin-top: 35vh;
+  }
+  .box-f {
+    box-shadow: gray 0px 0px 10px 0.1px;
+    border: 0px;
+  }
+  .heico {
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
+    margin-left: 15px;
+  }
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .ico {
+    padding: 13px 0;
+    height: 25px;
+    width: 25px;
+    margin: 0, auto;
+  }
+
+  .set_group {
+    margin-bottom: 5px;
+    padding-top: 12px;
+    position: relative;
+  }
+
+  .set_select {
+    padding: 2px;
+    padding-top: 12px;
+    border: none;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    line-height: 20px;
+    background: white;
+    height: 45px;
+    outline: none;
+    width: 24vw;
+    margin-right: 1vw;
+
+    border-radius: 3px;
+  }
+  .set_label_select {
+    position: absolute;
+    top: 16px;
+    left: 5px;
+    color: gray;
+    transition: all 0.2s;
+    cursor: text;
+    font-size: 14px;
+    line-height: 12px;
+    user-select: none;
+  }
+  .set_label {
+    position: absolute;
+    top: 22px;
+    left: 5px;
+    color: gray;
+    transition: all 0.2s;
+    cursor: text;
+    font-size: 16px;
+    line-height: 24px;
+    user-select: none;
+  }
+  .set_input {
+    padding: 2px;
+    padding-top: 10px;
+    border: none;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    line-height: 20px;
+    height: 30px;
+    outline: none;
+    width: 99%;
+    border-radius: 3px;
+  }
+  .set_input:focus,
+  .set_select:focus {
+    border: 2px solid #1b94e0;
+  }
+  .set_input_focus {
+    border: 2px solid #ccc;
+  }
+  .set_input:focus + label,
+  .set_select:focus + label {
+    font-size: 14px;
+    line-height: 12px;
+    top: 16px;
+    color: #1b94e0;
+  }
+  .set_label_focus {
+    font-size: 14px;
+    line-height: 12px;
+    top: 16px;
+    color: gray;
+  }
+}
+
+@media screen and (max-width: 733px) {
+  .box {
+    width: 95vw;
+  }
+  #serbox {
+    width: calc(98vw - 80px);
+    /*     background:red; */
+  }
+  #arback {
+    display: none;
+  }
+  #ab_on {
+    display: block;
+  }
+  .box-f {
+    width: 100vw;
+    height: 100vh;
+    background: white;
+
+    position: fixed;
+    top: 0px;
+    user-select: none;
+  }
+  #search_off {
+    display: none;
+  }
+}
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #1b94e0;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<meta name="viewport" content="width=device-width">
+<div>画像検索</div>
+<div class="box">
+  <form action="javascript:search('img')" id="serform">
+    <div class="flex">
+      <img src="https://yukazu211.github.io/svg/search.svg" class="ico" id="search"/>
+      <img src="https://yukazu211.github.io/svg/arrow-bl.svg" class="ico none" id="arback"/>
+      <input id="serbox" placeholder="画像検索" autocomplete="off"/>
+      <img src="https://yukazu211.github.io/svg/close-g.svg"class="ico clear-hidden"id="clear"alt =""/><img src="https://yukazu211.github.io/svg/setting.svg" alt="" class="ico" id="settings">  
+      
+    </div>
+    <div class="yosoku">
+      <hr class="yohr">
+      <ul class="youl" id="ul">
+        <li class="yoli" id="yo1"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im1"/><span class="yosp" id="sp1">11</span></div></li>
+        <li class="yoli" id="yo2"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico"id="im2"/><span class="yosp" id="sp2">22</span></div></li>
+        <li class="yoli" id="yo3"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im3"/><span class="yosp" id="sp3">33</span></div></li>
+        <li class="yoli" id="yo4"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im4"/><span class="yosp" id="sp4">44</span></div></li>
+        <li class="yoli" id="yo5"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im5"/><span class="yosp" id="sp5">55</span></div></li>
+        <li class="yoli" id="yo6"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im6"/><span class="yosp" id="sp6">66</span></div></li>
+        <li class="yoli" id="yo7"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im7"/><span class="yosp" id="sp7">77</span></div></li>
+        <li class="yoli" id="yo8"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im8"/><span class="yosp" id="sp8">88</span></div></li>
+        <li class="yoli" id="yo9"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im9"/><span class="yosp" id="sp9">99</span></div></li>
+        <li class="yoli" id="yo10"><div class="flex"><img src="https://yukazu211.github.io/svg/search.svg" class="heico" id="im10"/><span class="yosp" id="sp10">10</span></div></li>
+      </ul><p class="clear"><a id="clear_cook">履歴をクリア</a></p></div>
+    
+    
+  </form>
+</div>
+<div id="set_modal">
+  <div class="modal_bg"></div>
+  <div class="modal_head">
+    <img src="https://yukazu211.github.io/svg/close-g.svg" alt="" class="ico modal_close">
+    <h3>詳細検索</h3>
+    <button id="modal_button"><b>検索</b></button>
+  </div>
+    
+  <div class="modal">
+  
+    <h4>キーワード</h4>
+        <div class="set_group">
+      <input class="set_input">
+      <label class="set_label">キーワードをすべて含む</label>
+      <span class="set_intro">例:"313系 211系"…"313系"と"211系"の両方を含む</span>
+    </div>
+    <div class="set_group">
+      <input class="set_input">
+      <label class="set_label">キーワードのいずれかを含む</label>
+      <span class="set_intro">例:"313系 211系"…"313系"と"211系"のいずれかを含む</span>
+    </div>
+    <div class="set_group">
+      <input class="set_input">
+      <label class="set_label">キーワードを含まない</label>
+      <span class="set_intro">例:"211系"…"211系"を含まない</span>
+    </div>
+    <div class="set_group">
+      <input class="set_input">
+      <label class="set_label">次のタグを含む</label>
+      <span class="set_intro">例:"313系"…タグ"#313系"を含む</span>
+    </div>
+    <h4>場所</h4>
+    <div class="flex_item">
+      <div class="set_group">
+      <select id="pre" class="set_select"><option value="-1" disabled selected></option></select>
+      <label class="set_label_select">都道府県</label>
+    </div>
+    <div class="set_group">
+      <select id="city" class="set_select"><option value="-1" disabled selected></option></select>
+      <label class="set_label_select">都道府県</label>
+    </div>
+    </div>
+    
+
+
+    <pre>
+    a
+    a
+    a
+    a
+    
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    a
+    
+    a
+    a
+</pre>
+  </div>
+</div>
+
+
+<script>
+var a = "";
+function search(t){//検索
+  var b = $('#serbox').val();
+  
+  if(b.length>0){//0文字じゃないかチェック
+  b = b.replace(/[ 　]+/g, ' ');
+  b= b.replaceAll('%','%25');
+  b= b.replaceAll('+','%2B');
+  b= b.replaceAll('"','%22');
+  b= b.replaceAll('&','%26');
+  b= b.replaceAll('=','%3D');
+  b= b.replaceAll('#','%23');
+  b= b.replaceAll(':','%3A');
+  b= b.replaceAll('[','%5B');
+  b= b.replaceAll(']','%5D');
+  b= b.replaceAll(' ','+');
+  if(b.match(/^\+/)){//最初に空白が含まれていないかチェック
+    b= b.replace(/^\+/,'');
+  }
+  if(b.match(/\+$/)){//最後に空白が含まれていないかチェック
+    
+     b= b.replace(/\+$/,'');
+  }
+    
+    
+  cook();
+ 
+
+var d = a.indexOf(b);
+if(d!=-1){
+a.splice( d ,1);  
+}
+a.push(b);
+
+    console.log(a)
+    Cookies.set('keyword', a);
+    
+    // location.href='https://yukazu211.github.io/search?q='+b;
+  }
+}
+function cook(){
+if(Cookies.get('keyword')===undefined){
+   Cookies.set('keyword', '', {path: '/'});
+    }
+
+    a =Cookies.get('keyword');
+    a= a.replace('["','');
+    a= a.replace('"]','');
+    a = a.split('","');
+
+}
+
+
+var val = 0;
+
+
+$('#serbox').keyup(function(e) {
+  
+    if($(this).val().length>0){
+      
+      $('#sp1').text($(this).val())
+      if(val==0){
+        val = 1;
+        $('#clear').removeClass("clear-hidden");
+        $('#im1').attr("src", "https://yukazu211.github.io/svg/search.svg");
+      }
+    }else{
+      if(val==1){
+        val = 0;
+        $('#clear').addClass("clear-hidden");
+        $('#serbox').focus();
+      }
+    }
+});
+
+
+
+
+
+$('#clear').on('click', function() {
+  val = 0;
+  $('#clear').addClass("clear-hidden");
+  $('#serbox').val('')  
+});
+
+
+
+
+
+$('#serbox').on('focus', function() {
+      $('.box').attr('class','box-f');
+      $('#arback').attr('id','ab_on');
+      $('#search').attr('id','search_off');
+  $('.yosoku').show();
+  
+  
+  
+  
+  
+  if($('#serbox').val().length==0){
+  cook()
+  var len = a.length;
+  for (  var i = 1; i <= 10;  i++  ){
+ if(i<len){
+   var t = a[len-i];
+   $('#sp'+i).text(t)
+   $('#im'+i).attr("src", "https://yukazu211.github.io/svg/time.svg")
+ }}
+var y = 0;
+
+$.getJSON("https://yukazu211.github.io/search/yosoku.json")
+    .done(function (data) {
+for(var i= len; i<= 10;  i++  ){    
+    var pre_arry = data[y];
+    var arr = Object.entries(pre_arry);
+    $('#sp'+i).text(arr[0][0])
+  $('#im'+i).attr("src", "https://yukazu211.github.io/svg/search.svg")
+    y++
+}
+    })
+
+  
+  }else{
+    $('#im1').attr("src", "https://yukazu211.github.io/svg/search.svg");
+  }
+  
+  });
+
+$(document).on("click", "#ab_on", function () {
+    $('#serbox').blur();
+    $('#ab_on').attr('id','arback');  
+  $('.box-f').attr('class','box');
+  $('#search_off').attr('id','search');
+  });
+
+
+{
+$(document).on("click", "#yo1", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo2", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo3", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo4", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo5", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo6", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo7", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo8", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo9", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+$(document).on("click", "#yo10", function () {
+  $('#serbox').val($(this).text())
+ search('img');
+});
+}
+      $('.modal_bg,.modal_close').on('click',function(){
+        
+        $('#set_modal').fadeOut();
+        
+    });
+$('#settings').on('click',function(){
+        
+        $('#set_modal').fadeIn();
+        return false;
+    });
+
+$('.set_group').on('click',function(){
+  $(this).children('input').focus();
+    });
+$('.set_input').on('blur',function(){
+  if($(this).val().length>0){
+   $(this).addClass('set_input_focus')
+   $(this).next().addClass('set_label_focus')
+  }else{
+    $(this).removeClass('set_input_focus')
+    $(this).next().removeClass('set_label_focus')
+  }
+    });
+  
+
+$(document).on("blur", "#serbox", function () {
+if($(window).width()>733){
+   window.setTimeout(blur, 1);
+}
+});
+
+$('#clear_cook').on('click', function() {
+      Cookies.remove('keyword');
+  });
+$('.flex').on('click', function() {
+        window.setTimeout("$('#serbox').focus();", 2);
+  });
+
+function blur(){
+  
+  $('#ab_on').attr('id','arback');  
+  $('.box-f').attr('class','box');
+  $('#search_off').attr('id','search');
+  $('.yosoku').hide();
+  
+}
+
+
+$(function() {
+  $.getJSON('https://yukazu211.github.io/search/prefecture.json', function(data) {
+    for(var i=0; i<47; i++) {
+    var pre_arry = data[i];
+    var arr = Object.entries(pre_arry);
+  $('#pre').append($('<option>').html(arr[1][1]).val(arr[0][1]));
+    }
+  });
+});
+
+
+$('#pre').on('change', function() {
+  $('#city').html('<option value="-1" disabled selected></option>');
+  var val = $('#pre').val();
+$.getJSON('https://www.land.mlit.go.jp/webland/api/CitySearch?area='+val, 
+    function(data) {
+  var city = Object.entries(data)[1][1];
+  for(var i=0; i<city.length; i++){
+    var city_arry = city[i];
+    var arr = Object.entries(city_arry);
+    if(arr[1][1].match(/^(?!.*区$).*$/)||val=='13'){
+  $('#city').append($('<option>').html(arr[1][1]).val(arr[0][1]));
+    }
+  } 
+  
+  });
+});
+//# sourceURL=userscript.js
+</script>
+</body>
+</html>
